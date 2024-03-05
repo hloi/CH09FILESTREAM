@@ -3,6 +3,7 @@
 #include <string>
 #include <fstream>
 #include <filesystem>
+#include "Names.h"
 
 using namespace std;
 
@@ -30,6 +31,9 @@ void parse(string line) {
 //    cout << "Age: "        << userAge << endl;
 
     ostringstream oss;
+
+    Names name1 = Names(firstName, lastName);
+    cout << name1;
 
     oss << firstName << " | " << lastName << " | " << userAge << endl;
     ofstream outputF;
@@ -60,10 +64,13 @@ int main() {
     outputF.open("names.out");
     outputF.close();
     string line;
+    Names name1;
     while (!inputF.eof()) {
         getline(inputF, line);
         if (line.size() > 0) {
-            parse(line);
+            // parse(line);
+            istringstream inSS(line);
+            inSS >> name1;
         }
 
         // cout << line << endl;
